@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ResourceStringManagerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ResourceStringManagerModelStoreContainer">
+          <EntitySet Name="fileStringData" EntityType="ResourceStringManagerModel.Store.fileStringData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="lang" EntityType="ResourceStringManagerModel.Store.lang" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="project" EntityType="ResourceStringManagerModel.Store.project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="resourceFile" EntityType="ResourceStringManagerModel.Store.resourceFile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="stringData" EntityType="ResourceStringManagerModel.Store.stringData" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__fileStrin__lang___20C1E124" Association="ResourceStringManagerModel.Store.FK__fileStrin__lang___20C1E124">
+            <End Role="lang" EntitySet="lang" />
+            <End Role="fileStringData" EntitySet="fileStringData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fileStrin__proje__1FCDBCEB" Association="ResourceStringManagerModel.Store.FK__fileStrin__proje__1FCDBCEB">
+            <End Role="project" EntitySet="project" />
+            <End Role="fileStringData" EntitySet="fileStringData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fileStrin__resou__21B6055D" Association="ResourceStringManagerModel.Store.FK__fileStrin__resou__21B6055D">
+            <End Role="resourceFile" EntitySet="resourceFile" />
+            <End Role="fileStringData" EntitySet="fileStringData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__lang__project_id__145C0A3F" Association="ResourceStringManagerModel.Store.FK__lang__project_id__145C0A3F">
+            <End Role="project" EntitySet="project" />
+            <End Role="lang" EntitySet="lang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resourceF__proje__1BFD2C07" Association="ResourceStringManagerModel.Store.FK__resourceF__proje__1BFD2C07">
+            <End Role="project" EntitySet="project" />
+            <End Role="resourceFile" EntitySet="resourceFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stringDat__lang___1920BF5C" Association="ResourceStringManagerModel.Store.FK__stringDat__lang___1920BF5C">
+            <End Role="lang" EntitySet="lang" />
+            <End Role="stringData" EntitySet="stringData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stringDat__proje__182C9B23" Association="ResourceStringManagerModel.Store.FK__stringDat__proje__182C9B23">
+            <End Role="project" EntitySet="project" />
+            <End Role="stringData" EntitySet="stringData" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="fileStringData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="int" />
+          <Property Name="lang_id" Type="int" />
+          <Property Name="resourceFile_id" Type="int" />
+          <Property Name="resourcekey" Type="nvarchar" MaxLength="200" />
+          <Property Name="data" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="lang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="int" />
+          <Property Name="code" Type="nchar" MaxLength="10" />
+          <Property Name="desc" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="outputdir" Type="nvarchar" MaxLength="500" />
+          <Property Name="outputfilename" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="resourceFile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="int" />
+          <Property Name="resx_filepath" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="stringData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="int" />
+          <Property Name="lang_id" Type="int" />
+          <Property Name="resourcekey" Type="nvarchar" MaxLength="200" />
+          <Property Name="data" Type="nvarchar" />
+        </EntityType>
+        <Association Name="FK__fileStrin__lang___20C1E124">
+          <End Role="lang" Type="ResourceStringManagerModel.Store.lang" Multiplicity="0..1" />
+          <End Role="fileStringData" Type="ResourceStringManagerModel.Store.fileStringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fileStringData">
+              <PropertyRef Name="lang_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fileStrin__proje__1FCDBCEB">
+          <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
+          <End Role="fileStringData" Type="ResourceStringManagerModel.Store.fileStringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fileStringData">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fileStrin__resou__21B6055D">
+          <End Role="resourceFile" Type="ResourceStringManagerModel.Store.resourceFile" Multiplicity="0..1" />
+          <End Role="fileStringData" Type="ResourceStringManagerModel.Store.fileStringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resourceFile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fileStringData">
+              <PropertyRef Name="resourceFile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__lang__project_id__145C0A3F">
+          <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
+          <End Role="lang" Type="ResourceStringManagerModel.Store.lang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="lang">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resourceF__proje__1BFD2C07">
+          <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
+          <End Role="resourceFile" Type="ResourceStringManagerModel.Store.resourceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="resourceFile">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stringDat__lang___1920BF5C">
+          <End Role="lang" Type="ResourceStringManagerModel.Store.lang" Multiplicity="0..1" />
+          <End Role="stringData" Type="ResourceStringManagerModel.Store.stringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stringData">
+              <PropertyRef Name="lang_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stringDat__proje__182C9B23">
+          <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
+          <End Role="stringData" Type="ResourceStringManagerModel.Store.stringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stringData">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ResourceStringManagerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ResourceStringManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fileStringDatas" EntityType="ResourceStringManagerModel.fileStringData" />
+          <EntitySet Name="langs" EntityType="ResourceStringManagerModel.lang" />
+          <EntitySet Name="projects" EntityType="ResourceStringManagerModel.project" />
+          <EntitySet Name="resourceFiles" EntityType="ResourceStringManagerModel.resourceFile" />
+          <EntitySet Name="stringDatas" EntityType="ResourceStringManagerModel.stringData" />
+          <AssociationSet Name="FK__fileStrin__lang___20C1E124" Association="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124">
+            <End Role="lang" EntitySet="langs" />
+            <End Role="fileStringData" EntitySet="fileStringDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fileStrin__proje__1FCDBCEB" Association="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB">
+            <End Role="project" EntitySet="projects" />
+            <End Role="fileStringData" EntitySet="fileStringDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fileStrin__resou__21B6055D" Association="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D">
+            <End Role="resourceFile" EntitySet="resourceFiles" />
+            <End Role="fileStringData" EntitySet="fileStringDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__lang__project_id__145C0A3F" Association="ResourceStringManagerModel.FK__lang__project_id__145C0A3F">
+            <End Role="project" EntitySet="projects" />
+            <End Role="lang" EntitySet="langs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stringDat__lang___1920BF5C" Association="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C">
+            <End Role="lang" EntitySet="langs" />
+            <End Role="stringData" EntitySet="stringDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__resourceF__proje__1BFD2C07" Association="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07">
+            <End Role="project" EntitySet="projects" />
+            <End Role="resourceFile" EntitySet="resourceFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stringDat__proje__182C9B23" Association="ResourceStringManagerModel.FK__stringDat__proje__182C9B23">
+            <End Role="project" EntitySet="projects" />
+            <End Role="stringData" EntitySet="stringDatas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="fileStringData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" />
+          <Property Name="lang_id" Type="Int32" />
+          <Property Name="resourceFile_id" Type="Int32" />
+          <Property Name="resourcekey" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="data" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="lang" Relationship="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124" FromRole="fileStringData" ToRole="lang" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB" FromRole="fileStringData" ToRole="project" />
+          <NavigationProperty Name="resourceFile" Relationship="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D" FromRole="fileStringData" ToRole="resourceFile" />
+        </EntityType>
+        <EntityType Name="lang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" />
+          <Property Name="code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="desc" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124" FromRole="lang" ToRole="fileStringData" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__lang__project_id__145C0A3F" FromRole="lang" ToRole="project" />
+          <NavigationProperty Name="stringDatas" Relationship="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C" FromRole="lang" ToRole="stringData" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="outputdir" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="outputfilename" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB" FromRole="project" ToRole="fileStringData" />
+          <NavigationProperty Name="langs" Relationship="ResourceStringManagerModel.FK__lang__project_id__145C0A3F" FromRole="project" ToRole="lang" />
+          <NavigationProperty Name="resourceFiles" Relationship="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07" FromRole="project" ToRole="resourceFile" />
+          <NavigationProperty Name="stringDatas" Relationship="ResourceStringManagerModel.FK__stringDat__proje__182C9B23" FromRole="project" ToRole="stringData" />
+        </EntityType>
+        <EntityType Name="resourceFile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" />
+          <Property Name="resx_filepath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D" FromRole="resourceFile" ToRole="fileStringData" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07" FromRole="resourceFile" ToRole="project" />
+        </EntityType>
+        <EntityType Name="stringData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" />
+          <Property Name="lang_id" Type="Int32" />
+          <Property Name="resourcekey" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="data" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="lang" Relationship="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C" FromRole="stringData" ToRole="lang" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__stringDat__proje__182C9B23" FromRole="stringData" ToRole="project" />
+        </EntityType>
+        <Association Name="FK__fileStrin__lang___20C1E124">
+          <End Role="lang" Type="ResourceStringManagerModel.lang" Multiplicity="0..1" />
+          <End Role="fileStringData" Type="ResourceStringManagerModel.fileStringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fileStringData">
+              <PropertyRef Name="lang_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fileStrin__proje__1FCDBCEB">
+          <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
+          <End Role="fileStringData" Type="ResourceStringManagerModel.fileStringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fileStringData">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fileStrin__resou__21B6055D">
+          <End Role="resourceFile" Type="ResourceStringManagerModel.resourceFile" Multiplicity="0..1" />
+          <End Role="fileStringData" Type="ResourceStringManagerModel.fileStringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resourceFile">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fileStringData">
+              <PropertyRef Name="resourceFile_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__lang__project_id__145C0A3F">
+          <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
+          <End Role="lang" Type="ResourceStringManagerModel.lang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="lang">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stringDat__lang___1920BF5C">
+          <End Role="lang" Type="ResourceStringManagerModel.lang" Multiplicity="0..1" />
+          <End Role="stringData" Type="ResourceStringManagerModel.stringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lang">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stringData">
+              <PropertyRef Name="lang_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__resourceF__proje__1BFD2C07">
+          <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
+          <End Role="resourceFile" Type="ResourceStringManagerModel.resourceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="resourceFile">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stringDat__proje__182C9B23">
+          <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
+          <End Role="stringData" Type="ResourceStringManagerModel.stringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stringData">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ResourceStringManagerModelStoreContainer" CdmEntityContainer="ResourceStringManagerEntities">
+          <EntitySetMapping Name="fileStringDatas"><EntityTypeMapping TypeName="ResourceStringManagerModel.fileStringData"><MappingFragment StoreEntitySet="fileStringData">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="project_id" ColumnName="project_id" />
+            <ScalarProperty Name="lang_id" ColumnName="lang_id" />
+            <ScalarProperty Name="resourceFile_id" ColumnName="resourceFile_id" />
+            <ScalarProperty Name="resourcekey" ColumnName="resourcekey" />
+            <ScalarProperty Name="data" ColumnName="data" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="langs"><EntityTypeMapping TypeName="ResourceStringManagerModel.lang"><MappingFragment StoreEntitySet="lang">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="project_id" ColumnName="project_id" />
+            <ScalarProperty Name="code" ColumnName="code" />
+            <ScalarProperty Name="desc" ColumnName="desc" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="projects"><EntityTypeMapping TypeName="ResourceStringManagerModel.project"><MappingFragment StoreEntitySet="project">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="outputdir" ColumnName="outputdir" />
+            <ScalarProperty Name="outputfilename" ColumnName="outputfilename" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="resourceFiles"><EntityTypeMapping TypeName="ResourceStringManagerModel.resourceFile"><MappingFragment StoreEntitySet="resourceFile">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="project_id" ColumnName="project_id" />
+            <ScalarProperty Name="resx_filepath" ColumnName="resx_filepath" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="stringDatas"><EntityTypeMapping TypeName="ResourceStringManagerModel.stringData"><MappingFragment StoreEntitySet="stringData">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="project_id" ColumnName="project_id" />
+            <ScalarProperty Name="lang_id" ColumnName="lang_id" />
+            <ScalarProperty Name="resourcekey" ColumnName="resourcekey" />
+            <ScalarProperty Name="data" ColumnName="data" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="i18nEntities">
+        <EntityTypeShape EntityType="ResourceStringManagerModel.fileStringData" Width="1.5" PointX="5.25" PointY="6.5" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.lang" Width="1.5" PointX="3" PointY="6.5" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.project" Width="1.5" PointX="0.75" PointY="4.25" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.resourceFile" Width="1.5" PointX="3" PointY="9.625" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.stringData" Width="1.5" PointX="5.25" PointY="3.375" Height="2.3648893229166656" IsExpanded="true" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.6824446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="7.6824446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="6.8071907552083335" />
+          <ConnectorPoint PointX="1.5" PointY="9.0884407552083335" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="9.0884407552083335" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="9.0884407552083335" />
+          <ConnectorPoint PointX="5.25" PointY="9.0884407552083335" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.615143229166666" />
+          <ConnectorPoint PointX="6" PointY="10.615143229166666" />
+          <ConnectorPoint PointX="6" PointY="9.2494921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__lang__project_id__145C0A3F" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.6535953776041667" />
+          <ConnectorPoint PointX="3" PointY="6.6535953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="6.5" />
+          <ConnectorPoint PointX="3.75" PointY="4.5574446614583328" />
+          <ConnectorPoint PointX="5.25" PointY="4.5574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="6.8071907552083335" />
+          <ConnectorPoint PointX="1.9062525" PointY="10.615143229166666" />
+          <ConnectorPoint PointX="3" PointY="10.615143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__stringDat__proje__182C9B23" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.2111669921874988" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="5.2111669921874979" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="5.2111669921874988" />
+          <ConnectorPoint PointX="5.25" PointY="5.2111669921874988" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

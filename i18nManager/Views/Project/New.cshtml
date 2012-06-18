@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "New i18n Project";
+}
+
+<div id="content">
+    <form id="newProjectForm" class="well form-horizontal span6" action="">
+        <fieldset>
+            <legend>New i18n Project</legend>
+            <div class="control-group">
+                <label class="control-label" for="name">Name</label>
+                <div class="controls">
+                    <input type="text" id="name" name="name"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="outputdir">Output Directory</label>
+                <div class="controls">
+                    <input type="text" id="outputdir" name="outputdir"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"  for="outputfilename">Output Filename</label>
+                <div class="controls">
+                    <input type="text" id="outputfilename" name="outputfilename"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"  for="languages">Languages</label>
+                <div class="controls">
+                    <ul id="languageList" class="nav nav-pills nav-stacked span5">
+                        <li>
+                            <span class="span2">en</span>
+                            <div class="span2"><a href="#" class="btn btn-mini"><i class="icon-trash"></i></a></div>
+                        </li>
+                    </ul>
+                    <select id="languages" name="languages">
+                        <option selected="selected" value="">Languages</option>                        
+                        @foreach (dynamic lang in ViewBag.Languages)
+                        {
+                            @:<option value="@lang.Key">@lang.Key - @lang.Value</option>
+                        }
+                    </select>
+                    <a id="addLanguage" href="#" class="btn btn-success btn-mini">Add</a>
+ 
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button id="btnSave" class="btn btn-primary">Save</button>
+                    <button id="btnCancel" class="btn">Cancel</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function getLanguageList() {
+            window.lang = [];
+            $("#languageList li > span").each(function () {
+                var $this = $(this);
+                var lang = $this.text();
+                window.lang.push(lang);
+            });  
+        }
+
+        $(function () {
+            getLanguageList();
+            for (var i = 0; i < window.lang.length; i++) {
+                $("#languages > option[value='" + window.lang[l] + "']").remove();
+            }
+        });
+            
+
+
+            // remove languages already in the project list of languages
+//            $("#languageList li > span").each(function () {
+//                var $this = $(this);
+//                var lang = $this.text();
+
+//                
+//            });
+//        });
+
+
+        $(function() {
+
+            $('#btnSave').click(function(e) {
+                e.preventDefault();
+                alert($("#newProjectForm").serialize());
+                $.post('/project/create', $("#newProjectForm").serialize(), function(blah) {
+                    console.log(blah);
+                    window.location = '/';
+                });
+            });
+            $('#btnCancel').click(function(e) {
+                e.preventDefault();
+                window.location = "/";
+            });
+
+            $('#languageList a.btn.btn-danger.btn-mini').live('click', function(e) {
+                var $this = $(this);
+                $this.parent().parent().remove();
+            });
+
+            $('#languageList a:not(.btn-danger)').live('click', function(e) {
+                alert("'en' cannot be deleted");
+            });
+
+            $('#addLanguage').click(function(e) {
+                var lang = $("#languages > option:selected").val();
+                $('#languageList').append('<li><span class="span2">' + lang
+                    + '</span><div class="span2"><a href="#" class="btn btn-danger btn-mini"><i class="icon-trash icon-white"></i></a></div></li>');
+                $("#languages > option[value='" + lang + "']").remove();
+                $("#languages").val('');
+            });
+
+
+        });
+    </script>
+}

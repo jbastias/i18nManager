@@ -1,0 +1,63 @@
+﻿@model IEnumerable<i18nEntities.project>
+
+@{
+    ViewBag.Title = "i18n Projects";
+}
+
+
+<div id="content">
+    <div class="well">
+        <h2>i18n Projects</h2>
+        <table id="projectList" class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var proj in Model)
+                {
+                <tr>
+                    <td>
+                        <i class='icon-edit'></i>
+                        @Html.ActionLink(@proj.name, "Edit", new {id = proj.id}, new {@class = ""})   
+                    </td>
+                    <td>
+                        @Html.Hidden("projectid-" + @proj.id, proj.id)
+                        <a href="#" class="btn btn-danger  btn-mini"><i class="icon-trash icon-white"></i></a>
+                    </td>
+                </tr>
+                    
+                }
+                
+                
+
+            </tbody>
+        </table>
+        @Html.ActionLink("New", "New", null, new { @class = "btn btn-primary" })
+        
+    </div>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $(function () {
+        $('a.btn.btn-danger.btn.btn-mini').live('click', function (e) {
+            var $this = $(this);
+            var projId = $this.prev('input').val();
+            alert(projId);
+
+            $.post("/project/delete", { id: projId }, function (result) {
+                console.log(result);
+                $this.parent().parent().remove();
+            });
+
+
+
+
+
+        });
+    });
+</script>
+}
