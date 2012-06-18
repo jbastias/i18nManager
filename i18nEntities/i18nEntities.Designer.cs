@@ -18,13 +18,14 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__fileStrin__lang___20C1E124", "lang", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.lang), "fileStringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.fileStringData), true)]
-[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__fileStrin__proje__1FCDBCEB", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "fileStringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.fileStringData), true)]
-[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__fileStrin__resou__21B6055D", "resourceFile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.resourceFile), "fileStringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.fileStringData), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__fileStrin__lang___24927208", "lang", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.lang), "fileStringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.fileStringData), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__fileStrin__proje__239E4DCF", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "fileStringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.fileStringData), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__fileStrin__resou__25869641", "resourceFile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.resourceFile), "fileStringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.fileStringData), true)]
 [assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__lang__project_id__145C0A3F", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "lang", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.lang), true)]
-[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__stringDat__lang___1920BF5C", "lang", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.lang), "stringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.stringData), true)]
-[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__resourceF__proje__1BFD2C07", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "resourceFile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.resourceFile), true)]
-[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__stringDat__proje__182C9B23", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "stringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.stringData), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__stringDat__lang___1CF15040", "lang", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.lang), "stringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.stringData), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__resourceF__proje__1FCDBCEB", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "resourceFile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.resourceFile), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__resxItem__projec__182C9B23", "project", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.project), "resxItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.resxItem), true)]
+[assembly: EdmRelationshipAttribute("ResourceStringManagerModel", "FK__stringDat__resxI__1BFD2C07", "resxItem", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(i18nEntities.resxItem), "stringData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(i18nEntities.stringData), true)]
 
 #endregion
 
@@ -143,6 +144,22 @@ namespace i18nEntities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<resxItem> resxItems
+        {
+            get
+            {
+                if ((_resxItems == null))
+                {
+                    _resxItems = base.CreateObjectSet<resxItem>("resxItems");
+                }
+                return _resxItems;
+            }
+        }
+        private ObjectSet<resxItem> _resxItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<stringData> stringDatas
         {
             get
@@ -189,6 +206,14 @@ namespace i18nEntities
         public void AddToresourceFiles(resourceFile resourceFile)
         {
             base.AddObject("resourceFiles", resourceFile);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the resxItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToresxItems(resxItem resxItem)
+        {
+            base.AddObject("resxItems", resxItem);
         }
     
         /// <summary>
@@ -388,16 +413,16 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__lang___20C1E124", "lang")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__lang___24927208", "lang")]
         public lang lang
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___20C1E124", "lang").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___24927208", "lang").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___20C1E124", "lang").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___24927208", "lang").Value = value;
             }
         }
         /// <summary>
@@ -409,13 +434,13 @@ namespace i18nEntities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___20C1E124", "lang");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___24927208", "lang");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___20C1E124", "lang", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<lang>("ResourceStringManagerModel.FK__fileStrin__lang___24927208", "lang", value);
                 }
             }
         }
@@ -426,16 +451,16 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__proje__1FCDBCEB", "project")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__proje__239E4DCF", "project")]
         public project project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB", "project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF", "project").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB", "project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF", "project").Value = value;
             }
         }
         /// <summary>
@@ -447,13 +472,13 @@ namespace i18nEntities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB", "project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF", "project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB", "project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<project>("ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF", "project", value);
                 }
             }
         }
@@ -464,16 +489,16 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__resou__21B6055D", "resourceFile")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__resou__25869641", "resourceFile")]
         public resourceFile resourceFile
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__21B6055D", "resourceFile").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__25869641", "resourceFile").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__21B6055D", "resourceFile").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__25869641", "resourceFile").Value = value;
             }
         }
         /// <summary>
@@ -485,13 +510,13 @@ namespace i18nEntities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__21B6055D", "resourceFile");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__25869641", "resourceFile");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__21B6055D", "resourceFile", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<resourceFile>("ResourceStringManagerModel.FK__fileStrin__resou__25869641", "resourceFile", value);
                 }
             }
         }
@@ -632,18 +657,18 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__lang___20C1E124", "fileStringData")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__lang___24927208", "fileStringData")]
         public EntityCollection<fileStringData> fileStringDatas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__lang___20C1E124", "fileStringData");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__lang___24927208", "fileStringData");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__lang___20C1E124", "fileStringData", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__lang___24927208", "fileStringData", value);
                 }
             }
         }
@@ -692,18 +717,18 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__lang___1920BF5C", "stringData")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__lang___1CF15040", "stringData")]
         public EntityCollection<stringData> stringDatas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__lang___1920BF5C", "stringData");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__lang___1CF15040", "stringData");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__lang___1920BF5C", "stringData", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__lang___1CF15040", "stringData", value);
                 }
             }
         }
@@ -844,18 +869,18 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__proje__1FCDBCEB", "fileStringData")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__proje__239E4DCF", "fileStringData")]
         public EntityCollection<fileStringData> fileStringDatas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB", "fileStringData");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF", "fileStringData");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB", "fileStringData", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF", "fileStringData", value);
                 }
             }
         }
@@ -888,18 +913,18 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__resourceF__proje__1BFD2C07", "resourceFile")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__resourceF__proje__1FCDBCEB", "resourceFile")]
         public EntityCollection<resourceFile> resourceFiles
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<resourceFile>("ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07", "resourceFile");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<resourceFile>("ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB", "resourceFile");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<resourceFile>("ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07", "resourceFile", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<resourceFile>("ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB", "resourceFile", value);
                 }
             }
         }
@@ -910,18 +935,18 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__proje__182C9B23", "stringData")]
-        public EntityCollection<stringData> stringDatas
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__resxItem__projec__182C9B23", "resxItem")]
+        public EntityCollection<resxItem> resxItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__proje__182C9B23", "stringData");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<resxItem>("ResourceStringManagerModel.FK__resxItem__projec__182C9B23", "resxItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__proje__182C9B23", "stringData", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<resxItem>("ResourceStringManagerModel.FK__resxItem__projec__182C9B23", "resxItem", value);
                 }
             }
         }
@@ -1038,18 +1063,18 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__resou__21B6055D", "fileStringData")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__fileStrin__resou__25869641", "fileStringData")]
         public EntityCollection<fileStringData> fileStringDatas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__resou__21B6055D", "fileStringData");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__resou__25869641", "fileStringData");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__resou__21B6055D", "fileStringData", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<fileStringData>("ResourceStringManagerModel.FK__fileStrin__resou__25869641", "fileStringData", value);
                 }
             }
         }
@@ -1060,16 +1085,16 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__resourceF__proje__1BFD2C07", "project")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__resourceF__proje__1FCDBCEB", "project")]
         public project project
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07", "project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB", "project").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07", "project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB", "project").Value = value;
             }
         }
         /// <summary>
@@ -1081,13 +1106,179 @@ namespace i18nEntities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07", "project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB", "project");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07", "project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<project>("ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB", "project", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="ResourceStringManagerModel", Name="resxItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class resxItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new resxItem object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static resxItem CreateresxItem(global::System.Int32 id)
+        {
+            resxItem resxItem = new resxItem();
+            resxItem.id = id;
+            return resxItem;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> project_id
+        {
+            get
+            {
+                return _project_id;
+            }
+            set
+            {
+                Onproject_idChanging(value);
+                ReportPropertyChanging("project_id");
+                _project_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("project_id");
+                Onproject_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _project_id;
+        partial void Onproject_idChanging(Nullable<global::System.Int32> value);
+        partial void Onproject_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String resourcekey
+        {
+            get
+            {
+                return _resourcekey;
+            }
+            set
+            {
+                OnresourcekeyChanging(value);
+                ReportPropertyChanging("resourcekey");
+                _resourcekey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("resourcekey");
+                OnresourcekeyChanged();
+            }
+        }
+        private global::System.String _resourcekey;
+        partial void OnresourcekeyChanging(global::System.String value);
+        partial void OnresourcekeyChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__resxItem__projec__182C9B23", "project")]
+        public project project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resxItem__projec__182C9B23", "project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resxItem__projec__182C9B23", "project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<project> projectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__resxItem__projec__182C9B23", "project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<project>("ResourceStringManagerModel.FK__resxItem__projec__182C9B23", "project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__resxI__1BFD2C07", "stringData")]
+        public EntityCollection<stringData> stringDatas
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07", "stringData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<stringData>("ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07", "stringData", value);
                 }
             }
         }
@@ -1151,24 +1342,24 @@ namespace i18nEntities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> project_id
+        public Nullable<global::System.Int32> resxItem_id
         {
             get
             {
-                return _project_id;
+                return _resxItem_id;
             }
             set
             {
-                Onproject_idChanging(value);
-                ReportPropertyChanging("project_id");
-                _project_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("project_id");
-                Onproject_idChanged();
+                OnresxItem_idChanging(value);
+                ReportPropertyChanging("resxItem_id");
+                _resxItem_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("resxItem_id");
+                OnresxItem_idChanged();
             }
         }
-        private Nullable<global::System.Int32> _project_id;
-        partial void Onproject_idChanging(Nullable<global::System.Int32> value);
-        partial void Onproject_idChanged();
+        private Nullable<global::System.Int32> _resxItem_id;
+        partial void OnresxItem_idChanging(Nullable<global::System.Int32> value);
+        partial void OnresxItem_idChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1193,30 +1384,6 @@ namespace i18nEntities
         private Nullable<global::System.Int32> _lang_id;
         partial void Onlang_idChanging(Nullable<global::System.Int32> value);
         partial void Onlang_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String resourcekey
-        {
-            get
-            {
-                return _resourcekey;
-            }
-            set
-            {
-                OnresourcekeyChanging(value);
-                ReportPropertyChanging("resourcekey");
-                _resourcekey = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("resourcekey");
-                OnresourcekeyChanged();
-            }
-        }
-        private global::System.String _resourcekey;
-        partial void OnresourcekeyChanging(global::System.String value);
-        partial void OnresourcekeyChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1252,16 +1419,16 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__lang___1920BF5C", "lang")]
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__lang___1CF15040", "lang")]
         public lang lang
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1920BF5C", "lang").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1CF15040", "lang").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1920BF5C", "lang").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1CF15040", "lang").Value = value;
             }
         }
         /// <summary>
@@ -1273,13 +1440,13 @@ namespace i18nEntities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1920BF5C", "lang");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1CF15040", "lang");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1920BF5C", "lang", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<lang>("ResourceStringManagerModel.FK__stringDat__lang___1CF15040", "lang", value);
                 }
             }
         }
@@ -1290,16 +1457,16 @@ namespace i18nEntities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__proje__182C9B23", "project")]
-        public project project
+        [EdmRelationshipNavigationPropertyAttribute("ResourceStringManagerModel", "FK__stringDat__resxI__1BFD2C07", "resxItem")]
+        public resxItem resxItem
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__stringDat__proje__182C9B23", "project").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resxItem>("ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07", "resxItem").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__stringDat__proje__182C9B23", "project").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resxItem>("ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07", "resxItem").Value = value;
             }
         }
         /// <summary>
@@ -1307,17 +1474,17 @@ namespace i18nEntities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<project> projectReference
+        public EntityReference<resxItem> resxItemReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<project>("ResourceStringManagerModel.FK__stringDat__proje__182C9B23", "project");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<resxItem>("ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07", "resxItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<project>("ResourceStringManagerModel.FK__stringDat__proje__182C9B23", "project", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<resxItem>("ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07", "resxItem", value);
                 }
             }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using i18nEntities;
 using i18nManager.DataAccess;
 
@@ -29,10 +25,11 @@ namespace i18nManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(string name, string outputdir, string outputfilename)
+        public ActionResult Create(string name, string outputdir, string outputfilename, string[] mylanguages)
         {
-            var project = new project {name = name, outputdir = outputdir, outputfilename = outputfilename};
+            var project = new project {name = name, outputdir = outputdir, outputfilename = outputfilename };
             ProjectRepository.SaveProject(project);
+            LanguageRepository.CreateProjectLanguages(project.id, mylanguages);
             return Content("saved");
         }
 

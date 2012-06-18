@@ -10,16 +10,17 @@
           <EntitySet Name="lang" EntityType="ResourceStringManagerModel.Store.lang" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="project" EntityType="ResourceStringManagerModel.Store.project" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="resourceFile" EntityType="ResourceStringManagerModel.Store.resourceFile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="resxItem" EntityType="ResourceStringManagerModel.Store.resxItem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="stringData" EntityType="ResourceStringManagerModel.Store.stringData" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__fileStrin__lang___20C1E124" Association="ResourceStringManagerModel.Store.FK__fileStrin__lang___20C1E124">
+          <AssociationSet Name="FK__fileStrin__lang___24927208" Association="ResourceStringManagerModel.Store.FK__fileStrin__lang___24927208">
             <End Role="lang" EntitySet="lang" />
             <End Role="fileStringData" EntitySet="fileStringData" />
           </AssociationSet>
-          <AssociationSet Name="FK__fileStrin__proje__1FCDBCEB" Association="ResourceStringManagerModel.Store.FK__fileStrin__proje__1FCDBCEB">
+          <AssociationSet Name="FK__fileStrin__proje__239E4DCF" Association="ResourceStringManagerModel.Store.FK__fileStrin__proje__239E4DCF">
             <End Role="project" EntitySet="project" />
             <End Role="fileStringData" EntitySet="fileStringData" />
           </AssociationSet>
-          <AssociationSet Name="FK__fileStrin__resou__21B6055D" Association="ResourceStringManagerModel.Store.FK__fileStrin__resou__21B6055D">
+          <AssociationSet Name="FK__fileStrin__resou__25869641" Association="ResourceStringManagerModel.Store.FK__fileStrin__resou__25869641">
             <End Role="resourceFile" EntitySet="resourceFile" />
             <End Role="fileStringData" EntitySet="fileStringData" />
           </AssociationSet>
@@ -27,16 +28,20 @@
             <End Role="project" EntitySet="project" />
             <End Role="lang" EntitySet="lang" />
           </AssociationSet>
-          <AssociationSet Name="FK__resourceF__proje__1BFD2C07" Association="ResourceStringManagerModel.Store.FK__resourceF__proje__1BFD2C07">
+          <AssociationSet Name="FK__resourceF__proje__1FCDBCEB" Association="ResourceStringManagerModel.Store.FK__resourceF__proje__1FCDBCEB">
             <End Role="project" EntitySet="project" />
             <End Role="resourceFile" EntitySet="resourceFile" />
           </AssociationSet>
-          <AssociationSet Name="FK__stringDat__lang___1920BF5C" Association="ResourceStringManagerModel.Store.FK__stringDat__lang___1920BF5C">
+          <AssociationSet Name="FK__resxItem__projec__182C9B23" Association="ResourceStringManagerModel.Store.FK__resxItem__projec__182C9B23">
+            <End Role="project" EntitySet="project" />
+            <End Role="resxItem" EntitySet="resxItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stringDat__lang___1CF15040" Association="ResourceStringManagerModel.Store.FK__stringDat__lang___1CF15040">
             <End Role="lang" EntitySet="lang" />
             <End Role="stringData" EntitySet="stringData" />
           </AssociationSet>
-          <AssociationSet Name="FK__stringDat__proje__182C9B23" Association="ResourceStringManagerModel.Store.FK__stringDat__proje__182C9B23">
-            <End Role="project" EntitySet="project" />
+          <AssociationSet Name="FK__stringDat__resxI__1BFD2C07" Association="ResourceStringManagerModel.Store.FK__stringDat__resxI__1BFD2C07">
+            <End Role="resxItem" EntitySet="resxItem" />
             <End Role="stringData" EntitySet="stringData" />
           </AssociationSet>
         </EntityContainer>
@@ -77,17 +82,24 @@
           <Property Name="project_id" Type="int" />
           <Property Name="resx_filepath" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <EntityType Name="stringData">
+        <EntityType Name="resxItem">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="project_id" Type="int" />
-          <Property Name="lang_id" Type="int" />
           <Property Name="resourcekey" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="stringData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="resxItem_id" Type="int" />
+          <Property Name="lang_id" Type="int" />
           <Property Name="data" Type="nvarchar" />
         </EntityType>
-        <Association Name="FK__fileStrin__lang___20C1E124">
+        <Association Name="FK__fileStrin__lang___24927208">
           <End Role="lang" Type="ResourceStringManagerModel.Store.lang" Multiplicity="0..1" />
           <End Role="fileStringData" Type="ResourceStringManagerModel.Store.fileStringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__fileStrin__proje__1FCDBCEB">
+        <Association Name="FK__fileStrin__proje__239E4DCF">
           <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
           <End Role="fileStringData" Type="ResourceStringManagerModel.Store.fileStringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__fileStrin__resou__21B6055D">
+        <Association Name="FK__fileStrin__resou__25869641">
           <End Role="resourceFile" Type="ResourceStringManagerModel.Store.resourceFile" Multiplicity="0..1" />
           <End Role="fileStringData" Type="ResourceStringManagerModel.Store.fileStringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,7 +147,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__resourceF__proje__1BFD2C07">
+        <Association Name="FK__resourceF__proje__1FCDBCEB">
           <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
           <End Role="resourceFile" Type="ResourceStringManagerModel.Store.resourceFile" Multiplicity="*" />
           <ReferentialConstraint>
@@ -147,7 +159,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__stringDat__lang___1920BF5C">
+        <Association Name="FK__resxItem__projec__182C9B23">
+          <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
+          <End Role="resxItem" Type="ResourceStringManagerModel.Store.resxItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="resxItem">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stringDat__lang___1CF15040">
           <End Role="lang" Type="ResourceStringManagerModel.Store.lang" Multiplicity="0..1" />
           <End Role="stringData" Type="ResourceStringManagerModel.Store.stringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -159,15 +183,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__stringDat__proje__182C9B23">
-          <End Role="project" Type="ResourceStringManagerModel.Store.project" Multiplicity="0..1" />
+        <Association Name="FK__stringDat__resxI__1BFD2C07">
+          <End Role="resxItem" Type="ResourceStringManagerModel.Store.resxItem" Multiplicity="0..1" />
           <End Role="stringData" Type="ResourceStringManagerModel.Store.stringData" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="project">
+            <Principal Role="resxItem">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="stringData">
-              <PropertyRef Name="project_id" />
+              <PropertyRef Name="resxItem_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,16 +205,17 @@
           <EntitySet Name="langs" EntityType="ResourceStringManagerModel.lang" />
           <EntitySet Name="projects" EntityType="ResourceStringManagerModel.project" />
           <EntitySet Name="resourceFiles" EntityType="ResourceStringManagerModel.resourceFile" />
+          <EntitySet Name="resxItems" EntityType="ResourceStringManagerModel.resxItem" />
           <EntitySet Name="stringDatas" EntityType="ResourceStringManagerModel.stringData" />
-          <AssociationSet Name="FK__fileStrin__lang___20C1E124" Association="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124">
+          <AssociationSet Name="FK__fileStrin__lang___24927208" Association="ResourceStringManagerModel.FK__fileStrin__lang___24927208">
             <End Role="lang" EntitySet="langs" />
             <End Role="fileStringData" EntitySet="fileStringDatas" />
           </AssociationSet>
-          <AssociationSet Name="FK__fileStrin__proje__1FCDBCEB" Association="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB">
+          <AssociationSet Name="FK__fileStrin__proje__239E4DCF" Association="ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF">
             <End Role="project" EntitySet="projects" />
             <End Role="fileStringData" EntitySet="fileStringDatas" />
           </AssociationSet>
-          <AssociationSet Name="FK__fileStrin__resou__21B6055D" Association="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D">
+          <AssociationSet Name="FK__fileStrin__resou__25869641" Association="ResourceStringManagerModel.FK__fileStrin__resou__25869641">
             <End Role="resourceFile" EntitySet="resourceFiles" />
             <End Role="fileStringData" EntitySet="fileStringDatas" />
           </AssociationSet>
@@ -198,16 +223,20 @@
             <End Role="project" EntitySet="projects" />
             <End Role="lang" EntitySet="langs" />
           </AssociationSet>
-          <AssociationSet Name="FK__stringDat__lang___1920BF5C" Association="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C">
+          <AssociationSet Name="FK__stringDat__lang___1CF15040" Association="ResourceStringManagerModel.FK__stringDat__lang___1CF15040">
             <End Role="lang" EntitySet="langs" />
             <End Role="stringData" EntitySet="stringDatas" />
           </AssociationSet>
-          <AssociationSet Name="FK__resourceF__proje__1BFD2C07" Association="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07">
+          <AssociationSet Name="FK__resourceF__proje__1FCDBCEB" Association="ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB">
             <End Role="project" EntitySet="projects" />
             <End Role="resourceFile" EntitySet="resourceFiles" />
           </AssociationSet>
-          <AssociationSet Name="FK__stringDat__proje__182C9B23" Association="ResourceStringManagerModel.FK__stringDat__proje__182C9B23">
+          <AssociationSet Name="FK__resxItem__projec__182C9B23" Association="ResourceStringManagerModel.FK__resxItem__projec__182C9B23">
             <End Role="project" EntitySet="projects" />
+            <End Role="resxItem" EntitySet="resxItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__stringDat__resxI__1BFD2C07" Association="ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07">
+            <End Role="resxItem" EntitySet="resxItems" />
             <End Role="stringData" EntitySet="stringDatas" />
           </AssociationSet>
         </EntityContainer>
@@ -221,9 +250,9 @@
           <Property Name="resourceFile_id" Type="Int32" />
           <Property Name="resourcekey" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="data" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="lang" Relationship="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124" FromRole="fileStringData" ToRole="lang" />
-          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB" FromRole="fileStringData" ToRole="project" />
-          <NavigationProperty Name="resourceFile" Relationship="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D" FromRole="fileStringData" ToRole="resourceFile" />
+          <NavigationProperty Name="lang" Relationship="ResourceStringManagerModel.FK__fileStrin__lang___24927208" FromRole="fileStringData" ToRole="lang" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF" FromRole="fileStringData" ToRole="project" />
+          <NavigationProperty Name="resourceFile" Relationship="ResourceStringManagerModel.FK__fileStrin__resou__25869641" FromRole="fileStringData" ToRole="resourceFile" />
         </EntityType>
         <EntityType Name="lang">
           <Key>
@@ -233,9 +262,9 @@
           <Property Name="project_id" Type="Int32" />
           <Property Name="code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
           <Property Name="desc" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124" FromRole="lang" ToRole="fileStringData" />
+          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__lang___24927208" FromRole="lang" ToRole="fileStringData" />
           <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__lang__project_id__145C0A3F" FromRole="lang" ToRole="project" />
-          <NavigationProperty Name="stringDatas" Relationship="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C" FromRole="lang" ToRole="stringData" />
+          <NavigationProperty Name="stringDatas" Relationship="ResourceStringManagerModel.FK__stringDat__lang___1CF15040" FromRole="lang" ToRole="stringData" />
         </EntityType>
         <EntityType Name="project">
           <Key>
@@ -245,10 +274,10 @@
           <Property Name="name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
           <Property Name="outputdir" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="outputfilename" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB" FromRole="project" ToRole="fileStringData" />
+          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF" FromRole="project" ToRole="fileStringData" />
           <NavigationProperty Name="langs" Relationship="ResourceStringManagerModel.FK__lang__project_id__145C0A3F" FromRole="project" ToRole="lang" />
-          <NavigationProperty Name="resourceFiles" Relationship="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07" FromRole="project" ToRole="resourceFile" />
-          <NavigationProperty Name="stringDatas" Relationship="ResourceStringManagerModel.FK__stringDat__proje__182C9B23" FromRole="project" ToRole="stringData" />
+          <NavigationProperty Name="resourceFiles" Relationship="ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB" FromRole="project" ToRole="resourceFile" />
+          <NavigationProperty Name="resxItems" Relationship="ResourceStringManagerModel.FK__resxItem__projec__182C9B23" FromRole="project" ToRole="resxItem" />
         </EntityType>
         <EntityType Name="resourceFile">
           <Key>
@@ -257,22 +286,31 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="project_id" Type="Int32" />
           <Property Name="resx_filepath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D" FromRole="resourceFile" ToRole="fileStringData" />
-          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07" FromRole="resourceFile" ToRole="project" />
+          <NavigationProperty Name="fileStringDatas" Relationship="ResourceStringManagerModel.FK__fileStrin__resou__25869641" FromRole="resourceFile" ToRole="fileStringData" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB" FromRole="resourceFile" ToRole="project" />
+        </EntityType>
+        <EntityType Name="resxItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" />
+          <Property Name="resourcekey" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__resxItem__projec__182C9B23" FromRole="resxItem" ToRole="project" />
+          <NavigationProperty Name="stringDatas" Relationship="ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07" FromRole="resxItem" ToRole="stringData" />
         </EntityType>
         <EntityType Name="stringData">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="project_id" Type="Int32" />
+          <Property Name="resxItem_id" Type="Int32" />
           <Property Name="lang_id" Type="Int32" />
-          <Property Name="resourcekey" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="data" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="lang" Relationship="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C" FromRole="stringData" ToRole="lang" />
-          <NavigationProperty Name="project" Relationship="ResourceStringManagerModel.FK__stringDat__proje__182C9B23" FromRole="stringData" ToRole="project" />
+          <NavigationProperty Name="lang" Relationship="ResourceStringManagerModel.FK__stringDat__lang___1CF15040" FromRole="stringData" ToRole="lang" />
+          <NavigationProperty Name="resxItem" Relationship="ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07" FromRole="stringData" ToRole="resxItem" />
         </EntityType>
-        <Association Name="FK__fileStrin__lang___20C1E124">
+        <Association Name="FK__fileStrin__lang___24927208">
           <End Role="lang" Type="ResourceStringManagerModel.lang" Multiplicity="0..1" />
           <End Role="fileStringData" Type="ResourceStringManagerModel.fileStringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -284,7 +322,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__fileStrin__proje__1FCDBCEB">
+        <Association Name="FK__fileStrin__proje__239E4DCF">
           <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
           <End Role="fileStringData" Type="ResourceStringManagerModel.fileStringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,7 +334,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__fileStrin__resou__21B6055D">
+        <Association Name="FK__fileStrin__resou__25869641">
           <End Role="resourceFile" Type="ResourceStringManagerModel.resourceFile" Multiplicity="0..1" />
           <End Role="fileStringData" Type="ResourceStringManagerModel.fileStringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,7 +358,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__stringDat__lang___1920BF5C">
+        <Association Name="FK__stringDat__lang___1CF15040">
           <End Role="lang" Type="ResourceStringManagerModel.lang" Multiplicity="0..1" />
           <End Role="stringData" Type="ResourceStringManagerModel.stringData" Multiplicity="*" />
           <ReferentialConstraint>
@@ -332,7 +370,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__resourceF__proje__1BFD2C07">
+        <Association Name="FK__resourceF__proje__1FCDBCEB">
           <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
           <End Role="resourceFile" Type="ResourceStringManagerModel.resourceFile" Multiplicity="*" />
           <ReferentialConstraint>
@@ -344,15 +382,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__stringDat__proje__182C9B23">
+        <Association Name="FK__resxItem__projec__182C9B23">
           <End Role="project" Type="ResourceStringManagerModel.project" Multiplicity="0..1" />
-          <End Role="stringData" Type="ResourceStringManagerModel.stringData" Multiplicity="*" />
+          <End Role="resxItem" Type="ResourceStringManagerModel.resxItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="project">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="stringData">
+            <Dependent Role="resxItem">
               <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__stringDat__resxI__1BFD2C07">
+          <End Role="resxItem" Type="ResourceStringManagerModel.resxItem" Multiplicity="0..1" />
+          <End Role="stringData" Type="ResourceStringManagerModel.stringData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="resxItem">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stringData">
+              <PropertyRef Name="resxItem_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -387,11 +437,15 @@
             <ScalarProperty Name="project_id" ColumnName="project_id" />
             <ScalarProperty Name="resx_filepath" ColumnName="resx_filepath" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="stringDatas"><EntityTypeMapping TypeName="ResourceStringManagerModel.stringData"><MappingFragment StoreEntitySet="stringData">
+          <EntitySetMapping Name="resxItems"><EntityTypeMapping TypeName="ResourceStringManagerModel.resxItem"><MappingFragment StoreEntitySet="resxItem">
             <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="project_id" ColumnName="project_id" />
-            <ScalarProperty Name="lang_id" ColumnName="lang_id" />
             <ScalarProperty Name="resourcekey" ColumnName="resourcekey" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="stringDatas"><EntityTypeMapping TypeName="ResourceStringManagerModel.stringData"><MappingFragment StoreEntitySet="stringData">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="resxItem_id" ColumnName="resxItem_id" />
+            <ScalarProperty Name="lang_id" ColumnName="lang_id" />
             <ScalarProperty Name="data" ColumnName="data" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
@@ -415,46 +469,52 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="i18nEntities">
-        <EntityTypeShape EntityType="ResourceStringManagerModel.fileStringData" Width="1.5" PointX="5.25" PointY="6.5" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResourceStringManagerModel.lang" Width="1.5" PointX="3" PointY="6.5" Height="2.3648893229166665" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResourceStringManagerModel.project" Width="1.5" PointX="0.75" PointY="4.25" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResourceStringManagerModel.resourceFile" Width="1.5" PointX="3" PointY="9.625" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="ResourceStringManagerModel.stringData" Width="1.5" PointX="5.25" PointY="3.375" Height="2.3648893229166656" IsExpanded="true" />
-        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__lang___20C1E124" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="7.6824446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="7.6824446614583337" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.fileStringData" Width="1.5" PointX="5.25" PointY="7.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.lang" Width="1.5" PointX="3" PointY="6.625" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.project" Width="1.5" PointX="0.75" PointY="5.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.resourceFile" Width="1.5" PointX="3" PointY="9.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.resxItem" Width="1.5" PointX="3" PointY="12.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ResourceStringManagerModel.stringData" Width="1.5" PointX="5.25" PointY="11.5" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__lang___24927208" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.1824446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="8.1824446614583337" />
         </AssociationConnector>
-        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__proje__1FCDBCEB" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="6.8071907552083335" />
-          <ConnectorPoint PointX="1.5" PointY="9.0884407552083335" />
-          <ConnectorPoint PointX="1.8229191666666667" PointY="9.0884407552083335" />
-          <ConnectorPoint PointX="1.9895858333333332" PointY="9.0884407552083335" />
-          <ConnectorPoint PointX="5.25" PointY="9.0884407552083335" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__proje__239E4DCF" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.15625" />
+          <ConnectorPoint PointX="6" PointY="6.15625" />
+          <ConnectorPoint PointX="6" PointY="7.375" />
         </AssociationConnector>
-        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__resou__21B6055D" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="10.615143229166666" />
-          <ConnectorPoint PointX="6" PointY="10.615143229166666" />
-          <ConnectorPoint PointX="6" PointY="9.2494921875" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__fileStrin__resou__25869641" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.93724609375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.93724609375" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.93724609375" />
+          <ConnectorPoint PointX="5.25" PointY="9.93724609375" />
         </AssociationConnector>
         <AssociationConnector Association="ResourceStringManagerModel.FK__lang__project_id__145C0A3F" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.6535953776041667" />
-          <ConnectorPoint PointX="3" PointY="6.6535953776041667" />
+          <ConnectorPoint PointX="2.25" PointY="7.4660953776041667" />
+          <ConnectorPoint PointX="3" PointY="7.4660953776041667" />
         </AssociationConnector>
-        <AssociationConnector Association="ResourceStringManagerModel.FK__stringDat__lang___1920BF5C" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="6.5" />
-          <ConnectorPoint PointX="3.75" PointY="4.5574446614583328" />
-          <ConnectorPoint PointX="5.25" PointY="4.5574446614583328" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__stringDat__lang___1CF15040" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.9898893229166674" />
+          <ConnectorPoint PointX="4.875" PointY="9.3648893229166674" />
+          <ConnectorPoint PointX="4.875" PointY="12.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="12.5862939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="ResourceStringManagerModel.FK__resourceF__proje__1BFD2C07" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="6.8071907552083335" />
-          <ConnectorPoint PointX="1.9062525" PointY="10.615143229166666" />
-          <ConnectorPoint PointX="3" PointY="10.615143229166666" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__resourceF__proje__1FCDBCEB" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.3071907552083335" />
+          <ConnectorPoint PointX="1.5" PointY="10.740143229166666" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="10.740143229166666" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="10.740143229166666" />
+          <ConnectorPoint PointX="3" PointY="10.740143229166666" />
         </AssociationConnector>
-        <AssociationConnector Association="ResourceStringManagerModel.FK__stringDat__proje__182C9B23" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.2111669921874988" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="5.2111669921874979" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="5.2111669921874988" />
-          <ConnectorPoint PointX="5.25" PointY="5.2111669921874988" />
+        <AssociationConnector Association="ResourceStringManagerModel.FK__resxItem__projec__182C9B23" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="8.3071907552083335" />
+          <ConnectorPoint PointX="1.9062525" PointY="13.490143229166666" />
+          <ConnectorPoint PointX="3" PointY="13.490143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="ResourceStringManagerModel.FK__stringDat__resxI__1BFD2C07" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.191940917968751" />
+          <ConnectorPoint PointX="5.25" PointY="13.191940917968751" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
