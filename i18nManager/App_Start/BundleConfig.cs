@@ -9,7 +9,8 @@ namespace i18nManager
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-1.*",
-                        "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/i18nManager.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));

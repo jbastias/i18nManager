@@ -24,9 +24,16 @@ namespace i18nManager
             // Resx Routes
             routes.MapRoute(
                 name: "ResxList",
-                url: "Project/Resx/{projectId}/{languageId}",
-                defaults: new { controller = "Resx", action = "List", projectId = 1, languageId = UrlParameter.Optional }
+                url: "Project/Resx/{projectId}",
+                defaults: new { controller = "Resx", action = "List", projectId = 1}
             );
+
+            routes.MapRoute(
+                name: "Resx new route",
+                url: "Project/Resx/{action}/{projectId}",
+                defaults: new { controller = "Resx", action = "List", projectId = 1 }
+            );
+
 
             routes.MapRoute(
                 name: "Resx Routes",

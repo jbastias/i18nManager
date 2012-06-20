@@ -6,16 +6,12 @@ namespace i18nManager.Controllers
 {
     public class ProjectController : Controller
     {
-        //
-        // GET: /Project/
-
         [HttpGet]
         public ActionResult List()
         {
             var projects  = ProjectRepository.GetAllProjects();
             return View(projects);
         }
-
 
         [HttpGet]
         public ActionResult New()
@@ -34,12 +30,6 @@ namespace i18nManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult View(int id)
-        {
-            return View();
-        }
-
-        [HttpGet]
         public ActionResult Edit(int id)
         {
             ViewBag.Languages = Utils.LangUtils.GetLanguageList();            
@@ -48,12 +38,12 @@ namespace i18nManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int id, string name, string outputdir, string outputfilename)
+        public ActionResult Update(int id, string name, string outputdir, string outputfilename, string[] mylanguages)
         {
             ProjectRepository.Update(id, name, outputdir, outputfilename);
+            LanguageRepository.UpdateProjectLanguages(id, mylanguages);
             return Content(string.Format("updated: {0}", id));
         }
-
 
         [HttpPost]
         public ActionResult Delete(int id)
@@ -61,7 +51,6 @@ namespace i18nManager.Controllers
             ProjectRepository.DeleteProject(id);
             return Content(string.Format("deleted - {0}", id));
         }
-
 
     }
 }

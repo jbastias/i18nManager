@@ -125,6 +125,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ResxController.cs" />
     <Compile Include="DataAccess\BaseRepository.cs" />
+    <Compile Include="DataAccess\ResxRepository.cs" />
     <Compile Include="DataAccess\LanguageRepository.cs" />
     <Compile Include="DataAccess\ProjectRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +168,7 @@
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\i18nManager.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
@@ -209,9 +211,6 @@
     <Content Include="Views\Project\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Project\View.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Project\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +227,9 @@
       <Project>{D9BA037E-5187-4C30-9B9B-52B32AA1249F}</Project>
       <Name>i18nEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Resx\EditResourceStrings.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

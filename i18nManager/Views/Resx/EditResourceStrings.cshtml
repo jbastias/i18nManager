@@ -1,0 +1,38 @@
+﻿@model IEnumerable<i18nEntities.resxItem>
+
+@{
+    ViewBag.Title = "Resource Strings";
+}
+
+<h2>Resource Strings</h2>
+@Html.Hidden("projectId", ViewData["pid"])
+
+
+
+<form id="newProjectForm" class="well form-horizontal" action="">
+    <fieldset>
+        <legend>New Resource Item</legend>
+        <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+            <div class="controls">
+                <input type="text" id="resourceItemName" name="resourceItemName"/>
+                <a id="newResourceItem" href="#" class="btn btn-mini btn-success">New</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<table class="table well">
+    <thead>
+        <tr>
+            <th>Resource Name</th>
+            <th>Strings</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>name</td>
+            <td>langs</td>
+        </tr>
+    </tbody>
+</table>

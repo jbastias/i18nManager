@@ -5,7 +5,7 @@
 }
 
 <div id="content">
-    <form class="well form-horizontal span6" id="updateProjectForm">
+    <form class="well form-horizontal span6" id="updateProjectForm" action="">
         <fieldset>
             <legend>Edit i18n Project</legend>
             @Html.Hidden("id", Model.id)
@@ -31,14 +31,24 @@
                 <label class="control-label"  for="languages">Languages</label>
                 <div class="controls">
                     <ul id="languageList" class="nav nav-pills nav-stacked span5">
-                        <li>
-                            <span class="span2">en</span>
-                            <div class="span2"><a href="#" class="btn btn-mini"><i class="icon-trash"></i></a></div>
-                        </li>
+                        @foreach (var lang in Model.langs)
+                        {                            
+                            <li>
+                            <span class="span2">@lang.code</span>
+                            @if(@lang.code.Trim() == "en")
+                            {
+                                <div class="span2"><a href="#" class="btn btn-mini"><i class="icon-trash"></i></a></div>                                    
+                            } 
+                            else
+                            {
+                                <div class="span2"><a href="#" class="btn btn-danger btn-mini"><i class="icon-trash icon-white"></i></a></div>                                                                    
+                            }
+                            </li>
+                        }
                     </ul>
                     <select id="languages" name="languages">
                         <option selected="selected" value="">Languages</option>                        
-                        @foreach(var lang in ViewBag.Languages)
+                        @foreach (var lang in ViewBag.Languages)
                         {
                             @:<option value="@lang.Key">@lang.Key - @lang.Value</option>
                         }
@@ -59,57 +69,28 @@
 
 @section Scripts {
     <script type="text/javascript">
-
         $(function () {
-            // remove languages already in the project list of languages
-            $("#languageList li > span").each(function () {
-                var $this = $(this);
-                var lang = $this.text();
-                $("#languages > option[value='" + lang + "']").remove();
-            });
-        });
-
-
-        $(function () {
-
+            getLanguageList();
+            for (var i = 0; i < window.lang.length; i++) {
+                $("#languages > option[value='" + window.lang[i] + "']").remove();
+            }
             $('#btnSave').click(function (e) {
                 e.preventDefault();
-                //                alert('Save');
-
-//                alert($("#updateProjectForm").serialize());
-
-                $.post('/project/update', $("#updateProjectForm").serialize(), function (blah) {
+                var myform = $("#updateProjectForm").serialize();
+                getLanguageList();
+                var mylang = "";
+                for (var i = 0; i < window.lang.length; i++) {
+                    mylang += "&mylanguages=" + window.lang[i];
+                }
+                $.post('/project/update', myform + mylang, function (blah) {
                     console.log(blah);
                     window.location = '/';
                 });
-
-
-
             });
             $('#btnCancel').click(function (e) {
                 e.preventDefault();
                 window.location = "/";
             });
-
-            $('#languageList a.btn.btn-danger.btn-mini').live('click', function (e) {
-                var $this = $(this);
-                $this.parent().parent().remove();
-            });
-
-            $('#languageList a:not(.btn-danger)').live('click', function (e) {
-                alert("'en' cannot be deleted");
-            });
-
-            $('#addLanguage').click(function (e) {
-                var lang = $("#languages > option:selected").val();
-                $('#languageList').append('<li><span class="span2">' + lang
-                    + '</span><div class="span2"><a href="#" class="btn btn-danger btn-mini"><i class="icon-trash icon-white"></i></a></div></li>');
-                $("#languages > option[value='" + lang + "']").remove();
-                $("#languages").val('');
-            });
-
-
-
         });
     </script>
 }

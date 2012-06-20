@@ -12,6 +12,8 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Languages</th>
+                    <th>Resource Strings</th>
                     <th></th>
                 </tr>
             </thead>
@@ -21,7 +23,16 @@
                 <tr>
                     <td>
                         <i class='icon-edit'></i>
-                        @Html.ActionLink(@proj.name, "Edit", new {id = proj.id}, new {@class = ""})   
+                        @Html.ActionLink(@proj.name, "Edit", new {id = proj.id})   
+                    </td>
+                    <td>
+                        @foreach(var lang in proj.langs)
+                        {
+                            @:[@lang.code]
+                        }   
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit Resource Strings", "EditResourceStrings", "Resx", new { projectId = proj.id }, new {})
                     </td>
                     <td>
                         @Html.Hidden("projectid-" + @proj.id, proj.id)

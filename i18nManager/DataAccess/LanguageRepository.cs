@@ -18,13 +18,23 @@ namespace i18nManager.DataAccess
             return languages;
         }
 
+        public static int UpdateProjectLanguages(int projectId, string[] languages)
+        {
+            var existingLangs = from l in _context.langs where l.project_id == projectId select l;
+            foreach (var existingLang in existingLangs)
+            {
+                _context.langs.DeleteObject(existingLang);
+            }
+            _context.SaveChanges();
+            return CreateProjectLanguages(projectId, languages);
+        }
+
         public static int CreateProjectLanguages(int projectId, string[] languages)
         {
             foreach (var code in languages)
             {
                 var lang = new lang {project_id = projectId, code = code};
                 _context.langs.AddObject(lang);
-
             }
             return _context.SaveChanges();
         }
