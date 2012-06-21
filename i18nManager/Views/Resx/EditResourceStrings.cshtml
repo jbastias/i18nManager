@@ -1,13 +1,11 @@
-﻿@model IEnumerable<i18nEntities.resxItem>
+﻿@model i18nEntities.project
 
 @{
     ViewBag.Title = "Resource Strings";
 }
 
 <h2>Resource Strings</h2>
-@Html.Hidden("projectId", ViewData["pid"])
-
-
+@Html.Hidden("projectId", Model.id)
 
 <form id="newProjectForm" class="well form-horizontal" action="">
     <fieldset>
@@ -25,14 +23,28 @@
 <table class="table well">
     <thead>
         <tr>
+            <th></th>
             <th>Resource Name</th>
             <th>Strings</th>
         </tr>
     </thead>
     <tbody>
+        @foreach(var resxItem in Model.resxItems)
+        {
         <tr>
-            <td>name</td>
-            <td>langs</td>
-        </tr>
+            <td>
+                @Html.Hidden("resxId-" + resxItem.id.ToString(), resxItem.id)
+                <a href="#" class="btn btn-success btn-mini"><i class="icon-edit icon-white"></i></a>
+                <a href="#" class="btn btn-danger btn-mini"><i class="icon-trash icon-white"></i></a>
+            </td>
+            <td>@resxItem.resourcekey</td>
+            <td>
+                @foreach(var lang in Model.langs)
+                {
+                    <a href="#" class="btn btn-primary btn-mini">@lang.code</a>
+                }
+            </td>
+        </tr>            
+        }
     </tbody>
 </table>

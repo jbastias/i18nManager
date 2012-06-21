@@ -29,11 +29,9 @@ $(function () {
 
 
     $("#newResourceItem").live('click', function (e) {
-        // alert("new resource item: " + $("#resourceItemName").val());
-
-        $.post('/project/resx/newresx/' + $('#projectId').val(), { resxName: $('#resourceItemName').val() }, function (blah) {
-            console.log(blah);
-            alert(blah);
+        $.post('/project/resx/newresx/' + $('#projectId').val(), { resxName: $('#resourceItemName').val() }, function (result) {
+            // console.log(result);
+            console.dir(result);
         });
 
     });
