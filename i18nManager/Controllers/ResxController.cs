@@ -18,7 +18,7 @@ namespace i18nManager.Controllers
 
 
         [HttpGet]
-        public ActionResult EditResourceStrings(int projectId)
+        public ActionResult ResourceStrings(int projectId)
         {
             var proj = ProjectRepository.FindById(projectId);
             return View(proj);
@@ -30,15 +30,14 @@ namespace i18nManager.Controllers
             var newResxItem = ResxRepository.CreateProjectResx(projectId, resxName);
             ResxRepository.CreateProjectResxStrings(projectId, newResxItem.id);
 
-            var obj = new {id = newResxItem.id, resourcekey = newResxItem.resourcekey, stringData = new {}};
-            foreach (var data in newResxItem.stringDatas)
+            var obj = new 
             {
-                //obj.stringData.                 
-            }
+                id = newResxItem.id, 
+                resourcekey = newResxItem.resourcekey, 
+                stringData = (from s in newResxItem.stringDatas 
+                              select new {lang = s.lang.code} ).ToList() };
 
             return Json( obj );
-            //Json(new { id = newResxItem.id, resourcekey = newResxItem.resourcekey, stringData = new {xxxx = "me se solly"} });
-            // return Content(string.Format("saved: {0}", newResxItem.id));
         }
 
 

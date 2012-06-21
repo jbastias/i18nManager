@@ -32,7 +32,7 @@
                         }   
                     </td>
                     <td>
-                        @Html.ActionLink("Edit Resource Strings", "EditResourceStrings", "Resx", new { projectId = proj.id }, new {})
+                        @Html.ActionLink("Resource Strings", "ResourceStrings", "Resx", new { projectId = proj.id }, new {})
                     </td>
                     <td>
                         @Html.Hidden("projectid-" + @proj.id, proj.id)

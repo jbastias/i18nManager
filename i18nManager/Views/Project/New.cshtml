@@ -60,28 +60,28 @@
 
 @section Scripts {
 <script type="text/javascript">
-$(function () {
-    getLanguageList();
-    for (var i = 0; i < window.lang.length; i++) {
-        $("#languages > option[value='" + window.lang[i] + "']").remove();
-    }
-    $('#btnSave').click(function (e) {
-        e.preventDefault();
-        var myform = $("#newProjectForm").serialize();
+    $(function() {
         getLanguageList();
-        var mylang = "";
         for (var i = 0; i < window.lang.length; i++) {
-            mylang += "&mylanguages=" + window.lang[i];
+            $("#languages > option[value='" + window.lang[i] + "']").remove();
         }
-        $.post('/project/create', myform + mylang, function (blah) {
-            console.log(blah);
-            window.location = '/';
+        $('#btnSave').click(function(e) {
+            e.preventDefault();
+            var myform = $("#newProjectForm").serialize();
+            getLanguageList();
+            var mylang = "";
+            for (var i = 0; i < window.lang.length; i++) {
+                mylang += "&mylanguages=" + window.lang[i];
+            }
+            $.post('/project/create', myform + mylang, function(blah) {
+                console.log(blah);
+                window.location = '/';
+            });
+        });
+        $('#btnCancel').click(function(e) {
+            e.preventDefault();
+            window.location = "/";
         });
     });
-    $('#btnCancel').click(function (e) {
-        e.preventDefault();
-        window.location = "/";
-    });
-});            
 </script>
-
+}

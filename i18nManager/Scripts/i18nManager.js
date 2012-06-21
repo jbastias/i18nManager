@@ -37,4 +37,61 @@ $(function () {
     });
 
 
+    $("#resourceStringTable .btn.btn-success.btn-mini").live('click', function (e) {
+        alert('edit resource');
+
+        var $this = $(this);
+
+        alert($this.closest('tr').find('input').val());
+
+        console.dir($this);
+
+
+    });
+
+    $("#resourceStringTable .btn.btn-danger.btn-mini").live('click', function (e) {
+        alert('delete resource');
+    });
+
+    $("#resourceStringTable .btn.btn-primary.btn-mini").live('click', function (e) {
+        var $this = $(this);
+
+        alert('edit data ' + $this.text());
+    });
+
+    $("#edit_resource_name").dialog({
+        title: "Please complete for your Euro 2012 Betting Guide",
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        modal: true,
+        stack: true,
+        height: ($(window).height() * 0.65),
+        width: ($(window).width() * 0.40),
+
+        buttons: {
+            'Submit': function () {
+
+                // post info to server
+                //                $.post("SendEmail.ashx", formInfo, function (result) {
+                //                    console.log(result);
+                //                });
+
+                $(this).dialog('close');
+            },
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
+        }
+
+    });
+
+
+
+
+
+
+
+
+
 });
